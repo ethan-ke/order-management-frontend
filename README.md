@@ -1,4 +1,3 @@
-# coupon-h5
 
 ## Project setup
 ```

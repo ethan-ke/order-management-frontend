@@ -8,12 +8,12 @@
       </div>
       <div v-for="(order, index) in orders" :key="index" class="coupon">
         <div class="coupon-info">
-          <p class="title">Phone number: {{ order.phone }}</p>
+          <p class="title">Room number：{{ order.room_number }}</p>
         </div>
         <div class="coupon-footer">
           <div>
-            <p class="coupon-info-description">Price: <span>{{ order.price }}</span></p>
-            <p class="coupon-info-description">Room number：{{ order.room_number }}</p>
+            <p class="coupon-info-description">Price: {{ order.price }}</p>
+            <p class="coupon-info-description">Phone number: {{ order.phone }}</p>
             <p class="coupon-info-description">Create at：{{ order.created_at }}</p>
           </div>
           <div v-if="order.status === 1" class="handle" @click="handleEdit(order.id)">

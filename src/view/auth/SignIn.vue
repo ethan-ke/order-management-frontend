@@ -40,8 +40,8 @@ export default {
   data() {
     return {
       postForm: {
-        username: 'Ethan',
-        password: 'helloworld'
+        username: '',
+        password: ''
       }
     }
   },

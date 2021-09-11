@@ -9,7 +9,7 @@ const whiteList = ['/auth/sign-in'] // no redirect whitelist
 router.beforeEach(async(to, from, next) => {
 
   // set page title
-  document.title = 'Order system'
+  document.title = 'Order management system'
 
   // determine whether the user has logged in
   const hasToken = getAccessToken()

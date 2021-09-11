@@ -9,9 +9,17 @@ const routes = [
   {
     path: '/',
     name: 'Orders',
-    component: () => import('./view/orders'),
+    component: () => import('./view/orders/index'),
     meta: {
       title: 'All orders today'
+    }
+  },
+  {
+    path: '/edit/:id',
+    name: 'OrdersEdit',
+    component: () => import('./view/orders/edit'),
+    meta: {
+      title: 'Edit order'
     }
   },
   {

@@ -1,21 +1,28 @@
 <template>
   <div class="container">
-    <van-form @submit="onSubmit">
+    <van-form>
       <div class="mt-1">
         <van-field v-model="postForm.phone" name="Phone" label="Phone" placeholder="Please enter customer phone" :rules="[{ required: true, message: 'Please enter customer phone!' }]" />
         <van-field v-model="postForm.price" name="Price" type="tel" label="Price" placeholder="Please enter price" :rules="[{ required: true, message: 'Please enter price!' }]" />
         <van-field v-model="postForm.room_number" name="Room" label="Room" placeholder="Please enter room number" :rules="[{ required: true, message: 'Please enter room number!' }]" />
       </div>
       <div class="mt-1 submit-btn">
-        <van-button round block type="primary" native-type="submit" size="small">
-          Submit
-        </van-button>
+        <div>
+          <van-button round block type="primary" @click="submit(order_id)" size="small">
+            Update
+          </van-button>
+        </div>
+        <div>
+          <van-button round block type="warning" @click="cancel(order_id)" size="small">
+            Cancel order
+          </van-button>
+        </div>
       </div>
     </van-form>
   </div>
 </template>
 <script>
-import { createOrder} from '@/api/order'
+import { fetchOrder, updateOrder, cancelOrder } from '@/api/order'
 import { Button, Cell, Col, Field, Form, Toast} from 'vant'
 
 export default {
@@ -34,12 +41,29 @@ export default {
         phone: null,
         price: null,
         room_number: null
-      }
+      },
+      order_id: '',
+      order: {}
     }
   },
+  created() {
+    this.order_id = this.$route.params.id
+    this.getOrder(this.order_id)
+  },
   methods: {
-    onSubmit() {
-      createOrder(this.postForm).then(() => {
+    getOrder() {
+      fetchOrder(this.order_id).then((res) => {
+        this.postForm = res.data
+      })
+    },
+    submit(id) {
+      updateOrder(this.postForm, id).then(() => {
+        Toast.success('Success')
+        this.$router.push('/')
+      })
+    },
+    cancel(id) {
+      cancelOrder({ status: 2 }, id).then(() => {
         Toast.success('Success')
         this.$router.push('/')
       })
@@ -53,8 +77,14 @@ export default {
   margin: 30vh 1rem;
 }
 .submit-btn {
-  width: 200px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   margin: 3rem auto 0;
+  :first-child {
+    margin-right: 5px;
+  }
+  button {
+    width: 120px;
+  }
 }
 </style>

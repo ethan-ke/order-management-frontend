@@ -19,3 +19,17 @@ export function fetchOrder(id) {
     method: 'get'
   })
 }
+export function updateOrder(data, id) {
+  return request({
+    url: '/orders/' + id,
+    method: 'patch',
+    data
+  })
+}
+export function cancelOrder(data, id) {
+  return request({
+    url: '/orders/cancel/' + id,
+    method: 'patch',
+    data
+  })
+}

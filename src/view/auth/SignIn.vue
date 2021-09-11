@@ -60,7 +60,7 @@ export default {
 		margin-top: 25vh;
 	}
 	.submit {
-    margin-top: 25vh;
+    margin-top: 3rem;
     button {
       width: 200px;
       margin: 0 auto;

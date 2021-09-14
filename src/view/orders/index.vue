@@ -18,13 +18,12 @@
           </div>
           <div v-if="order.status === 1" class="handle">
             <van-button plain hairline type="primary" @click="handleEdit(order.id)" size="small">Edit</van-button>
-            <van-button plain hairline type="success" @click="handleComplete(order.id)" size="small">Confirm</van-button>
           </div>
           <div v-else-if="order.status === 2">
             <van-button plain hairline type="warning" disabled size="small">Canceled</van-button>
           </div>
           <div v-else-if="order.status === 3">
-            <van-button plain hairline disabled size="small">Finished</van-button>
+            <van-button plain hairline disabled type="success" size="small">Finished</van-button>
           </div>
         </div>
       </div>
@@ -36,8 +35,8 @@
   </div>
 </template>
 <script>
-import {Card, Image as VanImage, Toast, Empty, Button, Dialog} from 'vant'
-import { fetchOrders, updateOrderStatus } from '@/api/order'
+import {Card, Image as VanImage, Toast, Empty, Button } from 'vant'
+import { fetchOrders } from '@/api/order'
 export default {
   name: 'Orders',
   components: {
@@ -71,24 +70,6 @@ export default {
     },
     handleEdit(id) {
       this.$router.push({ name: 'OrdersEdit', params: { id: id }})
-    },
-    handleComplete(id) {
-      Dialog.confirm({
-        title: 'Confirm order',
-        message: 'Are you sure you want to complete this order？',
-        confirmButtonText: 'Confirm',
-        confirmButtonColor: '#07c160',
-        cancelButtonText: 'Cancel',
-      })
-      .then(() => {
-        updateOrderStatus({ status: 3 }, id).then(() => {
-          Toast.success('Success')
-          this.getOrders()
-        })
-      })
-      .catch(() => {
-        // on cancel
-      })
     }
   }
 }

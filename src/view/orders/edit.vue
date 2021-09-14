@@ -7,15 +7,18 @@
         <van-field v-model="postForm.room_number" name="Room" label="Room" placeholder="Please enter room number" :rules="[{ required: true, message: 'Please enter room number!' }]" />
       </div>
       <div class="mt-1 submit-btn">
-        <div class="submit-btn-left">
-          <van-button round block type="warning" @click="cancel(order_id)" size="small">
+        <div class="submit-btn-item">
+          <van-button plain round hairline type="warning" @click="cancel(order_id)" size="small">
             Cancel order
           </van-button>
         </div>
-        <div>
-          <van-button round block type="primary" @click="submit(order_id)" size="small">
+        <div class="submit-btn-item">
+          <van-button plain round hairline type="primary" @click="submit(order_id)" size="small">
             Update
           </van-button>
+        </div>
+        <div class="submit-btn-item">
+          <van-button plain round hairline type="success" @click="finish(order_id)" size="small">Finish</van-button>
         </div>
       </div>
     </van-form>
@@ -79,6 +82,25 @@ export default {
       .catch(() => {
         // on cancel
       })
+    },
+    finish(id) {
+      console.log(id)
+      Dialog.confirm({
+        title: 'Finish order',
+        message: 'Are you sure you want to finish this order？',
+        confirmButtonText: 'Confirm',
+        confirmButtonColor: '#07c160',
+        cancelButtonText: 'Cancel',
+      })
+      .then(() => {
+        updateOrderStatus({ status: 3 }, id).then(() => {
+          Toast.success('Success')
+          this.$router.push('/')
+        })
+      })
+      .catch(() => {
+        // on cancel
+      })
     }
   }
 }
@@ -91,12 +113,13 @@ export default {
 .submit-btn {
   display: flex;
   justify-content: center;
-  margin: 3rem auto 0;
-  &-left {
-    margin-right: 2rem;
+  margin: 3rem -10px 0;
+  &-item {
+    margin: 0 10px;
+    //margin-right: 2rem;
   }
   button {
-    width: 120px;
+    width: 100px;
   }
 }
 </style>

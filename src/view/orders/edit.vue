@@ -7,14 +7,14 @@
         <van-field v-model="postForm.room_number" name="Room" label="Room" placeholder="Please enter room number" :rules="[{ required: true, message: 'Please enter room number!' }]" />
       </div>
       <div class="mt-1 submit-btn">
-        <div>
-          <van-button round block type="primary" @click="submit(order_id)" size="small">
-            Update
+        <div class="submit-btn-left">
+          <van-button round block type="warning" @click="cancel(order_id)" size="small">
+            Cancel order
           </van-button>
         </div>
         <div>
-          <van-button round block type="warning" @click="cancel(order_id)" size="small">
-            Cancel order
+          <van-button round block type="primary" @click="submit(order_id)" size="small">
+            Update
           </van-button>
         </div>
       </div>
@@ -22,8 +22,8 @@
   </div>
 </template>
 <script>
-import { fetchOrder, updateOrder, cancelOrder } from '@/api/order'
-import { Button, Cell, Col, Field, Form, Toast} from 'vant'
+import { fetchOrder, updateOrder, updateOrderStatus } from '@/api/order'
+import { Button, Cell, Col, Field, Form, Toast, Dialog } from 'vant'
 
 export default {
   name: 'Submit',
@@ -33,6 +33,7 @@ export default {
     [Col.name]: Col,
     [Field.name]: Field,
     [Button.name]: Button,
+    [Dialog.name]: Dialog,
     [Toast.name]: Toast
   },
   data() {
@@ -63,9 +64,20 @@ export default {
       })
     },
     cancel(id) {
-      cancelOrder({ status: 2 }, id).then(() => {
-        Toast.success('Success')
-        this.$router.push('/')
+      Dialog.confirm({
+        title: 'Cancel order',
+        message: 'Are you sure you want to cancel this order？',
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel',
+      })
+      .then(() => {
+        updateOrderStatus({ status: 2 }, id).then(() => {
+          Toast.success('Success')
+          this.$router.push('/')
+        })
+      })
+      .catch(() => {
+        // on cancel
       })
     }
   }
@@ -80,8 +92,8 @@ export default {
   display: flex;
   justify-content: center;
   margin: 3rem auto 0;
-  :first-child {
-    margin-right: 5px;
+  &-left {
+    margin-right: 2rem;
   }
   button {
     width: 120px;

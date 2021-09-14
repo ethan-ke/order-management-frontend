@@ -26,9 +26,9 @@ export function updateOrder(data, id) {
     data
   })
 }
-export function cancelOrder(data, id) {
+export function updateOrderStatus(data, id) {
   return request({
-    url: '/orders/cancel/' + id,
+    url: '/orders/status/' + id,
     method: 'patch',
     data
   })

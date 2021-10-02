@@ -33,3 +33,9 @@ export function updateOrderStatus(data, id) {
     data
   })
 }
+export function getStatistics() {
+  return request({
+    url: 'statistics',
+    method: 'get'
+  })
+}

@@ -1,11 +1,6 @@
 <template>
   <div class="container">
     <div v-if="orders !== undefined && orders.length !== 0">
-      <div class="total-amount">
-        <p>Today's income: {{ today_income }}</p>
-        <p>Monthly income: {{ monthly_income }}</p>
-        <p>Total amount of the month: {{ total_amount }}</p>
-      </div>
       <div v-for="(order, index) in orders" :key="index" class="coupon">
         <div class="coupon-info">
           <p class="title">Room number：{{ order.room_number }}</p>
@@ -49,10 +44,6 @@ export default {
   data() {
     return {
       orders: [],
-      income: null,
-      today_income: null,
-      monthly_income: null,
-      total_amount: null,
       user: {}
     }
   },
@@ -81,15 +72,6 @@ body{
 }
 .container {
   margin: 1rem 1rem 4rem;
-}
-.total-amount {
-  border-radius: 10px;
-  padding: 1rem;
-  background-color: white;
-  margin-bottom: 10px;
-  p {
-    margin: 0.5rem 0;
-  }
 }
 .opacity {
   opacity: 0.3;

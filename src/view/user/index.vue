@@ -7,6 +7,13 @@
     <p class="username">Hello {{ user.username }}</p>
   </div>
   <div class="main">
+    <div class="total-amount">
+      <p>Today's income: {{ statistics.today_income }}</p>
+      <p>Monthly income: {{ statistics.monthly_income }}</p>
+      <p>Total amount of the month: {{ statistics.total_amount }}</p>
+      <p>Last month's income: {{ statistics.last_month_income }}</p>
+      <p>Last month's total amount: {{ statistics.last_month_total_amount }}</p>
+    </div>
   </div>
 </div>
 </template>
@@ -15,6 +22,7 @@
 import {Icon} from 'vant';
 import {useStore} from "vuex";
 import {ref} from "vue";
+import { getStatistics } from '@/api/order'
 
 export default {
   name: "index",
@@ -27,8 +35,12 @@ export default {
       username: store.state.user.username,
       avatar: store.state.user.avatar
     })
-    // console.log(store.state.user)
+    const statistics = ref({})
+    getStatistics().then((res) => {
+      statistics.value = res.data
+    })
     return {
+      statistics,
       user
     };
   },
@@ -45,7 +57,7 @@ body {
   margin: 0;
 }
 .user {
-  margin-top: 30vh;
+  margin-top: 30px;
   text-align: center;
   padding: 0 3rem;
   height: 140px;
@@ -57,24 +69,23 @@ body {
 }
 .main {
   padding: 0.5rem 1rem;
-  &-item {
-    @include flex();
-    justify-content: flex-start;
-    padding: 0.5rem 1rem;
-    border: 1px solid #cccccc;
+  .total-amount {
     border-radius: 10px;
-    margin-top: 1rem;
-    i {
-      color: #000000;
-    }
-    a {
-      color: #000000;
-      padding-left: 1rem;
-      font-size: 10pt;
-    }
-    &-arrow {
-      flex: 1;
-      text-align: right;
+    padding: 1rem;
+    background-color: white;
+    margin-bottom: 10px;
+    p {
+      font-size: 11pt;
+      padding-bottom: 13px;
+      border-bottom: 1px solid #dcdee0;
+      &:first-child {
+        margin-top: 0;
+      }
+      &:last-child {
+        border: unset;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
     }
   }
 }

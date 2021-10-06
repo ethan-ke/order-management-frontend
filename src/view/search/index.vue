@@ -34,6 +34,7 @@ export default {
     const customer = ref({})
     const phone = ref('')
     const handleSearch = () => {
+      phone.value = phone.value.replace(/\s*/g, '');
       fetchCustomers({ phone: phone.value }).then((res) => {
         if (res.length === 0) {
           customer.value = false

@@ -38,6 +38,14 @@ const routes = [
       title: 'User center'
     }
   },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('./view/search'),
+    meta: {
+      title: 'Search'
+    }
+  },
 ]
 
 const router = createRouter({

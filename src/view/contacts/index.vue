@@ -21,9 +21,8 @@
 <script>
 import {Icon} from 'vant';
 import {useStore} from "vuex";
-import {onMounted, ref} from "vue";
+import {ref} from "vue";
 import { getStatistics } from '@/api/order'
-import {useRoute} from "vue-router";
 
 export default {
   name: "index",
@@ -31,10 +30,6 @@ export default {
     [Icon.name]: Icon,
   },
   setup() {
-    const route = useRoute()
-    onMounted(() => {
-      // console.log(route.path)
-    })
     const store = useStore()
     const user = ref({
       username: store.state.user.username,

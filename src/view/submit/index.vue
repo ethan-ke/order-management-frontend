@@ -37,6 +37,13 @@ export default {
       }
     }
   },
+  watch: {
+    'postForm.phone': {
+      handler: function (val) {
+        this.postForm.phone = val.replace(/\s*/g, '')
+      }
+    }
+  },
   methods: {
     onSubmit() {
       createOrder(this.postForm).then(() => {

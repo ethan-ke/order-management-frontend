@@ -84,7 +84,6 @@ export default {
       })
     },
     finish(id) {
-      console.log(id)
       Dialog.confirm({
         title: 'Finish order',
         message: 'Are you sure you want to finish this order？',

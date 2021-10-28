@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {Icon, Button} from 'vant';
+import {Icon, Toast, Button} from 'vant';
 import { ref } from "vue";
 import { fetchCustomers } from '@/api/customer'
 
@@ -28,6 +28,7 @@ export default {
   name: "index",
   components: {
     [Icon.name]: Icon,
+    [Toast.name]: Toast,
     [Button.name]: Button
   },
   setup() {
@@ -38,8 +39,10 @@ export default {
       fetchCustomers({ phone: phone.value }).then((res) => {
         if (res.length === 0) {
           customer.value = false
+          Toast.fail('No resource found')
           return
         }
+        Toast.success('Search successful')
         customer.value = res.data
       })
     }
@@ -87,6 +90,10 @@ body {
     width: 120px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    &:active{
+      color: #000000;
+      background-color: #fff;
+    }
   }
 }
 .main {

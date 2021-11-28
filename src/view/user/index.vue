@@ -8,11 +8,15 @@
   </div>
   <div class="main">
     <div class="total-amount">
-      <p>Today's income: {{ statistics.today_income }}</p>
-      <p>Monthly income: {{ statistics.monthly_income }}</p>
+      <p>Today's salary: {{ statistics.today_income }}</p>
+      <p>Monthly salary: {{ statistics.monthly_income }}</p>
       <p>Total amount of the month: {{ statistics.total_amount }}</p>
-      <p>Last month's income: {{ statistics.last_month_income }}</p>
+      <p>Total deductions: {{ statistics.total_deductions }}</p>
+      <p>Actual salary: {{ statistics.actual_salary }}</p>
+      <p>Last month's salary: {{ statistics.last_month_income }}</p>
       <p>Last month's total amount: {{ statistics.last_month_total_amount }}</p>
+      <p>Total deductions last month: {{ statistics.total_deductions_last_month }}</p>
+      <p>Actual salary last month: {{ statistics.actual_salary_last_month }}</p>
     </div>
   </div>
 </div>
@@ -23,7 +27,6 @@ import {Icon} from 'vant';
 import {useStore} from "vuex";
 import {onMounted, ref} from "vue";
 import { getStatistics } from '@/api/order'
-import {useRoute} from "vue-router";
 
 export default {
   name: "index",
@@ -31,7 +34,6 @@ export default {
     [Icon.name]: Icon,
   },
   setup() {
-    const route = useRoute()
     onMounted(() => {
       // console.log(route.path)
     })

@@ -8,6 +8,7 @@
         <div class="coupon-footer">
           <div>
             <p class="coupon-info-description">Price: {{ order.price }}</p>
+            <p class="coupon-info-description">Deduction: {{ order.deduction }}</p>
             <p class="coupon-info-description">Phone number: {{ order.phone }}</p>
             <p class="coupon-info-description">Create at：{{ order.created_at }}</p>
           </div>

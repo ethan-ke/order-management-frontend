@@ -25,4 +25,7 @@ export default {
     background-color: #f8f8f8;
     -webkit-font-smoothing: antialiased;
   }
+  .van-uploader__upload {
+    background-color: #646566 !important;
+  }
 </style>

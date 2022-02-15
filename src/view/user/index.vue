@@ -8,15 +8,15 @@
   </div>
   <div class="main">
     <div class="total-amount">
-      <p>Today's salary: {{ statistics.today_income }}</p>
-      <p>Monthly salary: {{ statistics.monthly_income }}</p>
-      <p>Total amount of the month: {{ statistics.total_amount }}</p>
-      <p>Total deductions: {{ statistics.total_deductions }}</p>
-      <p>Actual salary: {{ statistics.actual_salary }}</p>
-      <p>Last month's salary: {{ statistics.last_month_income }}</p>
-      <p>Last month's total amount: {{ statistics.last_month_total_amount }}</p>
-      <p>Total deductions last month: {{ statistics.total_deductions_last_month }}</p>
-      <p>Actual salary last month: {{ statistics.actual_salary_last_month }}</p>
+      <p><span class="total-amount-category">Today's salary: </span><span>{{ statistics.today_income }}</span></p>
+      <p><span class="total-amount-category">Monthly salary: </span><span>{{ statistics.monthly_income }}</span></p>
+      <p><span class="total-amount-category">Total amount of the month: </span><span>{{ statistics.total_amount }}</span></p>
+      <p><span class="total-amount-category">Total deductions: </span><span>{{ statistics.total_deductions }}</span></p>
+      <p><span class="total-amount-category">Actual salary: </span><span>{{ statistics.actual_salary }}</span></p>
+      <p><span class="total-amount-category">Last month's salary: </span><span>{{ statistics.last_month_income }}</span></p>
+      <p><span class="total-amount-category">Last month's total amount: </span><span>{{ statistics.last_month_total_amount }}</span></p>
+      <p><span class="total-amount-category">Total deductions last month: </span><span>{{ statistics.total_deductions_last_month }}</span></p>
+      <p><span class="total-amount-category">Actual salary last month: </span><span>{{ statistics.actual_salary_last_month }}</span></p>
     </div>
   </div>
 </div>
@@ -82,6 +82,7 @@ body {
     background-color: white;
     margin-bottom: 10px;
     p {
+      display: flex;
       font-size: 11pt;
       padding-bottom: 13px;
       border-bottom: 1px solid #dcdee0;
@@ -93,6 +94,12 @@ body {
         margin-bottom: 0;
         padding-bottom: 0;
       }
+    }
+    span {
+      display: inline-block;
+    }
+    &-category {
+      margin-right: auto;
     }
   }
 }

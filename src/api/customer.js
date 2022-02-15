@@ -10,13 +10,22 @@ export function createOrder(data) {
 }
 export function fetchCustomers(query) {
   return request({
-    url: '/customers/search',
+    url: '/search/phone',
     method: 'get',
     params: {
       phone: query.phone
     },
     paramsSerializer: params => {
       return qs.stringify(params, { indices: true })
+    }
+  })
+}
+export function SearchCustomerPhoto(base64) {
+  return request({
+    url: '/search/photo',
+    method: 'post',
+    data: {
+      base64: base64
     }
   })
 }

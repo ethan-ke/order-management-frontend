@@ -18,6 +18,9 @@
       <p><span class="total-amount-category">Total deductions last month: </span><span>{{ statistics.total_deductions_last_month }}</span></p>
       <p><span class="total-amount-category">Actual salary last month: </span><span>{{ statistics.actual_salary_last_month }}</span></p>
     </div>
+    <div class="menu">
+      <div class="menu-password" @click="changePassword">Password</div>
+    </div>
   </div>
 </div>
 </template>
@@ -27,6 +30,7 @@ import {Icon} from 'vant';
 import {useStore} from "vuex";
 import {onMounted, ref} from "vue";
 import { getStatistics } from '@/api/order'
+import {useRouter} from "vue-router";
 
 export default {
   name: "index",
@@ -38,6 +42,7 @@ export default {
       // console.log(route.path)
     })
     const store = useStore()
+    const router = useRouter()
     const user = ref({
       username: store.state.user.username,
       avatar: store.state.user.avatar
@@ -46,8 +51,12 @@ export default {
     getStatistics().then((res) => {
       statistics.value = res.data
     })
+    function changePassword() {
+      router.push({ name: 'Password' })
+    }
     return {
       statistics,
+      changePassword,
       user
     };
   },
@@ -101,6 +110,12 @@ body {
     &-category {
       margin-right: auto;
     }
+  }
+  .menu-password {
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: white;
+    margin-bottom: 10px;
   }
 }
 </style>

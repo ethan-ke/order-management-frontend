@@ -13,3 +13,10 @@ export function getUserInfo() {
     method: 'get'
   })
 }
+export function setPassword(data) {
+  return request({
+    url: 'password',
+    method: 'patch',
+    data
+  })
+}

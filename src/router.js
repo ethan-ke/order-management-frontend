@@ -39,6 +39,14 @@ const routes = [
     }
   },
   {
+    path: '/password',
+    name: 'Password',
+    component: () => import('./view/user/password'),
+    meta: {
+      title: 'Change Password'
+    }
+  },
+  {
     path: '/search',
     name: 'Search',
     component: () => import('./view/search'),

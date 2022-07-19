@@ -7,7 +7,7 @@
         <van-field v-model="postForm.room_number" name="Room" label="Room" placeholder="Please enter room number" :rules="[{ required: true, message: 'Please enter room number!' }]" />
       </div>
       <div class="mt-1 submit-btn">
-        <van-button round block type="primary" native-type="submit" size="small">
+        <van-button round block type="primary" native-type="submit">
           Submit
         </van-button>
       </div>
@@ -57,7 +57,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin: 30vh 1rem;
+  margin: 10vh 1rem;
 }
 .submit-btn {
   width: 200px;

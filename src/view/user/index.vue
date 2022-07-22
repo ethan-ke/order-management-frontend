@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container">
   <div class="user">
     <div class="user-avatar">
       <img :src="user.avatar" alt="">
@@ -20,6 +20,7 @@
     </div>
     <div class="menu">
       <div class="menu-password" @click="changePassword">Password</div>
+      <div class="menu-password" @click="reportBad">Report bad customers</div>
     </div>
   </div>
 </div>
@@ -54,9 +55,13 @@ export default {
     function changePassword() {
       router.push({ name: 'Password' })
     }
+    function reportBad() {
+      router.push({ name: 'ReportBadCustomers' })
+    }
     return {
       statistics,
       changePassword,
+      reportBad,
       user
     };
   },
@@ -69,8 +74,12 @@ export default {
   align-items: center;
   justify-content: space-between;
 }
+
 body {
   margin: 0;
+}
+.container {
+  margin-bottom: 3rem;
 }
 .user {
   margin-top: 30px;

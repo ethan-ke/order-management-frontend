@@ -6,7 +6,7 @@ import { getAccessToken } from '@/utils/auth'
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  timeout: 10000 // request timeout
 })
 
 // request interceptor
@@ -40,12 +40,12 @@ service.interceptors.response.use(
     return response.data
   },
   error => {
-    if (error.response.status === 422) {
+    if (error.response && error.response.status === 422) {
       Object.entries(error.response.data.errors).forEach(res => {
         Toast.fail(res[1][0] ?? null)
       })
     } else {
-      Toast.fail(error.response.data.message)
+      Toast.fail(error)
     }
     return Promise.reject(error)
   }

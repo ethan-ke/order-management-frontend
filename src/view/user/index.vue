@@ -10,17 +10,13 @@
     <div class="total-amount">
       <p><span class="total-amount-category">Today's salary: </span><span>{{ statistics.today_income }}</span></p>
       <p><span class="total-amount-category">Monthly salary: </span><span>{{ statistics.monthly_income }}</span></p>
-      <p><span class="total-amount-category">Total amount of the month: </span><span>{{ statistics.total_amount }}</span></p>
-      <p><span class="total-amount-category">Total deductions: </span><span>{{ statistics.total_deductions }}</span></p>
       <p><span class="total-amount-category">Actual salary: </span><span>{{ statistics.actual_salary }}</span></p>
       <p><span class="total-amount-category">Last month's salary: </span><span>{{ statistics.last_month_income }}</span></p>
-      <p><span class="total-amount-category">Last month's total amount: </span><span>{{ statistics.last_month_total_amount }}</span></p>
-      <p><span class="total-amount-category">Total deductions last month: </span><span>{{ statistics.total_deductions_last_month }}</span></p>
-      <p><span class="total-amount-category">Actual salary last month: </span><span>{{ statistics.actual_salary_last_month }}</span></p>
     </div>
     <div class="menu">
       <div class="menu-password" @click="changePassword">Password</div>
-      <div class="menu-password" @click="reportBad">Report bad customers</div>
+      <div class="menu-password" @click="reportCustomerPic">Report bad customers</div>
+<!--      <div class="menu-password" @click="reportCustomerNumber">Report customers number</div>-->
     </div>
   </div>
 </div>
@@ -55,13 +51,17 @@ export default {
     function changePassword() {
       router.push({ name: 'Password' })
     }
-    function reportBad() {
-      router.push({ name: 'ReportBadCustomers' })
+    function reportCustomerPic() {
+      router.push({ name: 'ReportCustomersPic' })
+    }
+    function reportCustomerNumber() {
+      router.push({ name: 'ReportCustomersNumber' })
     }
     return {
       statistics,
       changePassword,
-      reportBad,
+      reportCustomerPic,
+      reportCustomerNumber,
       user
     };
   },

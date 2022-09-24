@@ -9,9 +9,10 @@
   <div class="main">
     <div class="total-amount">
       <p><span class="total-amount-category">Today's salary: </span><span>{{ statistics.today_income }}</span></p>
-      <p><span class="total-amount-category">Monthly salary: </span><span>{{ statistics.monthly_income }}</span></p>
+      <p><span class="total-amount-category">Total amount of the month: </span><span>{{ statistics.total_amount }}</span></p>
       <p><span class="total-amount-category">Actual salary: </span><span>{{ statistics.actual_salary }}</span></p>
       <p><span class="total-amount-category">Last month's salary: </span><span>{{ statistics.last_month_income }}</span></p>
+      <p><span class="total-amount-category">Last month's total amount: </span><span>{{ statistics.last_month_total_amount }}</span></p>
     </div>
     <div class="menu">
       <div class="menu-password" @click="changePassword">Password</div>

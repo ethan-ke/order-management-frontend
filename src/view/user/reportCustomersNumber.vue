@@ -3,8 +3,8 @@
     <van-form @submit="onSubmit">
       <div class="mt-1">
         <h3 class="text-center container-title">Report Customers Number</h3>
-        <van-field v-model="postForm.name" label="Name" placeholder="Bad" :rules="[{ required: true, message: 'Please upload picture!' }]" />
-        <van-field v-model="postForm.number" label="Number" placeholder="+966..." :rules="[{ required: true, message: 'Please upload picture!' }]" />
+        <van-field v-model="postForm.name" label="Name" placeholder="Bad" :rules="[{ required: true, message: 'Please enter name!' }]" />
+        <van-field v-model="postForm.phone" label="Number" placeholder="+966..." :rules="[{ required: true, message: 'Please enter number!' }]" />
         <van-field name="radio" label="Status">
           <template #input>
             <van-radio-group v-model="postForm.status" direction="horizontal">
@@ -45,7 +45,7 @@ export default {
     const loading = ref(false)
     const postForm = ref({
       name: null,
-      number: null,
+      phone: null,
       status: 0,
     })
     const onSubmit = () => {
@@ -54,13 +54,8 @@ export default {
         Toast.success('Success')
         loading.value = false
         router.push({ name: 'User' })
-      }).catch((res) => {
+      }).catch(() => {
         loading.value = false
-        if (res.data && res.data.message) {
-          Toast.fail(res.data.message)
-        } else {
-          Toast.fail('Timeout, please try again!')
-        }
       })
     }
     return {

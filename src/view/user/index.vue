@@ -17,7 +17,7 @@
     <div class="menu">
       <div class="menu-password" @click="changePassword">Password</div>
       <div class="menu-password" @click="reportCustomerPic">Report bad customers</div>
-<!--      <div class="menu-password" @click="reportCustomerNumber">Report customers number</div>-->
+      <div class="menu-password" @click="reportCustomerNumber">Report customers number</div>
     </div>
   </div>
 </div>

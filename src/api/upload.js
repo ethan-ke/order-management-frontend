@@ -14,3 +14,10 @@ export function reportBadCustomers(data) {
     data
   })
 }
+export function reportCustomersNumber(data) {
+  return request({
+    url: 'report/number',
+    method: 'post',
+    data
+  })
+}

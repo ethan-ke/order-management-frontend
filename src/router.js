@@ -47,9 +47,17 @@ const routes = [
     }
   },
   {
-    path: '/report-bad-customers',
-    name: 'ReportBadCustomers',
+    path: '/report/customers/pic',
+    name: 'ReportCustomersPic',
     component: () => import('./view/user/reportBadCustomers'),
+    meta: {
+      title: 'Report Bad Customers'
+    }
+  },
+  {
+    path: '/report/customers/number',
+    name: 'ReportCustomersNumber',
+    component: () => import('./view/user/reportCustomersNumber'),
     meta: {
       title: 'Report Bad Customers'
     }

@@ -25,7 +25,7 @@
 <script>
 import { Button, Cell, Col, Field, Form, Toast, RadioGroup, Radio } from 'vant'
 import { reportCustomersNumber } from "@/api/upload";
-import { ref } from 'vue';
+import {ref, watch} from 'vue';
 import { useRouter } from "vue-router";
 
 export default {
@@ -58,6 +58,9 @@ export default {
         loading.value = false
       })
     }
+    watch(() => postForm.value.phone, (phone) => {
+      postForm.value.phone = phone.replace(/\s*/g, '')
+    })
     return {
       loading,
       postForm,

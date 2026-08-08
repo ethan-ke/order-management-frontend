@@ -1,49 +1,39 @@
-import {router} from './router'
+import { router } from './router'
 import store from './store'
-import { Toast } from 'vant'
+import { showFailToast } from 'vant'
+import { getAccessToken } from '@/utils/auth' // 获取 Cookie Token[cite: 8]
 
-import { getAccessToken } from '@/utils/auth' // get token from cookie
+const whiteList = ['/auth/sign-in'] // 免登录白名单[cite: 8]
 
-const whiteList = ['/auth/sign-in'] // no redirect whitelist
-
-router.beforeEach(async(to, from, next) => {
-
-  // set page title
-  document.title = 'Order management system'
-
-  // determine whether the user has logged in
+router.beforeEach(async (to, from, next) => {
   const hasToken = getAccessToken()
 
   if (hasToken) {
     if (to.path === '/auth/sign-in') {
-      // if is logged in, redirect to the home page
+      // 已登录状态访问登录页，直接重定向回首页
       next({ path: '/' })
     } else {
-      const hasGetUserInfo = store.getters.name
+      const hasGetUserInfo = store.getters?.name
       if (hasGetUserInfo) {
         next()
       } else {
         try {
-          // get user info
+          // 获取用户信息
           await store.dispatch('user/getInfo')
-
           next()
         } catch (error) {
-          // remove token and go to login page to re-login
+          // 获取失败清空 Token 并跳转登录页[cite: 8]
           await store.dispatch('user/resetToken')
-          Toast.fail(error || 'Has Error')
+          showFailToast(error?.message || 'Session expired, please sign in again')
           next(`/auth/sign-in?redirect=${to.path}`)
         }
       }
     }
   } else {
-    /* has no token*/
-
-    if (whiteList.indexOf(to.path) !== -1) {
-      // in the free login whitelist, go directly
+    /* 未登录状态 */
+    if (whiteList.includes(to.path)) {
       next()
     } else {
-      // other pages that do not have permission to access are redirected to the login page.
       next(`/auth/sign-in?redirect=${to.path}`)
     }
   }

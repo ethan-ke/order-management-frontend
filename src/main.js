@@ -2,14 +2,13 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { router } from './router'
 import store from './store'
-import { Tabbar, TabbarItem } from 'vant';
-import './assets/common.css' // import common styles
-import '@/permission' // permission control
+
+import './assets/main.css' // 引入我们配置好的 Tailwind CSS 文件
+import '@/permission' // 路由拦截权限控制
 
 const app = createApp(App)
-app.config.productionTip = false
-app.use(Tabbar);
-app.use(TabbarItem);
+
 app.use(router)
-  .use(store)
+    .use(store)
+
 app.mount('#app')

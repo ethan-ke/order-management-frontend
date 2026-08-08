@@ -7,11 +7,14 @@ export function uploadPicture(data) {
     data
   })
 }
-export function reportBadCustomers(data) {
+export function reportBadCustomers(formData) {
   return request({
     url: 'report',
     method: 'post',
-    data
+    data: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
   })
 }
 export function reportCustomersNumber(data) {

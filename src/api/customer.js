@@ -20,12 +20,23 @@ export function fetchCustomers(query) {
     }
   })
 }
-export function SearchCustomerPhoto(base64) {
+export function SearchCustomerPhoto(formData) {
   return request({
     url: '/search/photo',
     method: 'post',
-    data: {
-      base64: base64
+    data: formData, // 直接传入 formData 实例
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}
+export function scanPhoneOcr(formData) {
+  return request({
+    url: '/api/customer/ocr-phone',
+    method: 'post',
+    data: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data'
     }
   })
 }

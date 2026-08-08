@@ -20,3 +20,10 @@ export function setPassword(data) {
     data
   })
 }
+
+export function logout() {
+  return request({
+    url: 'authorizations/current',
+    method: 'delete'
+  })
+}
